@@ -8,7 +8,7 @@ volumes:
 
 services:
   server:
-    image: docker.gitea.com/gitea:1.25.4
+    image: docker.gitea.com/gitea:1.26.2
     container_name: gitea
     environment:
       - USER_UID=1000
