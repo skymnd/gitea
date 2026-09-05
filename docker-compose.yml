@@ -1,6 +1,6 @@
 networks:
-  gitea:
-    external: false
+  proxy:
+    external: true
 
 volumes:
   gitea:
@@ -26,7 +26,7 @@ services:
       - GITEA__service__NO_REPLY_ADDRESS=noreply.homelab
     restart: always
     networks:
-      - gitea
+      - proxy
     volumes:
       - gitea:/data
       - /etc/timezone:/etc/timezone:ro
@@ -36,6 +36,13 @@ services:
       - "222:22"
     depends_on:
       - db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gitea-router.rule=Host(`gitea.${HOMELAB_DOMAIN}`)"
+      - "traefik.http.routers.gitea-router.entrypoints=websecure"
+      - "traefik.http.routers.gitea-router.tls.certresolver=le"
+      - "traefik.http.services.gitea.loadbalancer.server.url=http://server:3000"
+      - "traefik.http.routers.gitea-router.service=gitea"
 
   db:
     image: docker.io/library/postgres:14
@@ -45,6 +52,6 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     networks:
-      - gitea
+      - proxy
     volumes:
       - ./postgres:/var/lib/postgresql/data
