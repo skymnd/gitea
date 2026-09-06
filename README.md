@@ -26,7 +26,7 @@ every so often as a backup. See the docs on
 
 ## Access
 
-Gitea is access through Traefik.
+Gitea is accessed through Traefik.
 To access Gitea without using Traefik, port `3000:3000` will need
 to be exposed in the `docker-compose.yml` file.
 
