@@ -23,3 +23,10 @@ the [docs](https://integrations.goauthentik.io/development/gitea/).
 I've selected some repos to be pushed to GitHub
 every so often as a backup. See the docs on
 [Repository Mirrors](https://docs.gitea.com/usage/repo-mirror#setting-up-a-push-mirror-from-gitea-to-github).
+
+## Access
+
+Gitea is access through Traefik.
+To access Gitea without using Traefik, port `3000:3000` will need
+to be exposed in the `docker-compose.yml` file.
+
