@@ -8,7 +8,7 @@ volumes:
 
 services:
   server:
-    image: docker.gitea.com/gitea:28.2.0
+    image: docker.gitea.com/gitea:28.2.0@sha256:30777c91280d973fa02be48b1ade735bd6859e8f6f7af3b4444d519437852504
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -44,7 +44,7 @@ services:
       - "traefik.http.routers.gitea-router.service=gitea"
 
   db:
-    image: docker.io/library/postgres:14
+    image: docker.io/library/postgres:14@sha256:0472f5295d05c211cc42b3daa5e84a128e390c5267b60ced9fe044bcf4edfdb8
     restart: always
     environment:
       - POSTGRES_DB=${DB_NAME}
