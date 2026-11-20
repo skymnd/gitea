@@ -44,7 +44,7 @@ services:
       - "traefik.http.routers.gitea-router.service=gitea"
 
   db:
-    image: docker.io/library/postgres:14
+    image: docker.io/library/postgres:19@sha256:bb6e70add742cd868fb62cb3b2f67d1dd2bdd2b65a521e778420748753687c60
     restart: always
     environment:
       - POSTGRES_DB=${DB_NAME}
